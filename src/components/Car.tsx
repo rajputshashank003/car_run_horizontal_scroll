@@ -47,8 +47,8 @@ const Car = ({data} : {data : { id : number ,car : string , shadow : string , ty
         <motion.div
             ref={par}
             className="relative h-screen w-screen overflow-hidden bg-gradient-to-t from-gray-700/60 via-black/40 to-white">
-            <div className="text absolute left-1/2 -translate-x-1/2 max-md:top-[5%] md:-top-[20%] text-[35vw] font-bold">
-                R2T
+            <div className="text absolute left-1/2 -translate-x-1/2 max-md:top-[8%] max-sm:top-[12%] md:-top-[12%] text-[26vw] font-bold">
+                R{data.id}T
             </div>
             <motion.div 
                 style={{x : "100%"}} 
