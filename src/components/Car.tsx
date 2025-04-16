@@ -20,6 +20,7 @@ const Car = ({data} : {data : { id : number ,car : string , shadow : string , ty
         const locomotiveScroll = new LocomotiveScroll();
         return () => locomotiveScroll.destroy();
     }, []);
+
     useGSAP(() => {
         const gtl = gsap.timeline({
             scrollTrigger: {
@@ -32,7 +33,6 @@ const Car = ({data} : {data : { id : number ,car : string , shadow : string , ty
             }
         })
         gtl.to(car.current, {
-            // transform : `translateX(0%)`,
             x : "0%",
         }, "abc")
         .to(tyreA.current, {
@@ -58,10 +58,12 @@ const Car = ({data} : {data : { id : number ,car : string , shadow : string , ty
                 <img src={data.car} className="relative w-full" alt="" /> 
                 <img src={data.shadow} className="absolute bottom-0" alt="" /> 
                 <motion.img
-                    src={"/tyre1.PNG"} ref={tyreB} className={`absolute bottom-[6%] origin-center left-[${left}] h-[42%]`} alt="" 
+                    style={{left}}
+                    src={"/tyre1.PNG"} ref={tyreB} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
                 />
                 <motion.img
-                    src={"/tyre1.PNG"} ref={tyreA} className={`absolute bottom-[6%] origin-center right-[${right}] h-[42%]`} alt="" 
+                    style={{right}}
+                    src={"/tyre1.PNG"} ref={tyreA} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
                 />
             </motion.div>
         </motion.div>
