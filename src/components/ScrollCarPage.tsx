@@ -12,10 +12,10 @@ const ScrollCarPage = () => {
     return (
         <div>
             <div className="h-fit">
-                <Car data={data.car1}/>
+                <Car data={data.car1} data2={data.car2}/>
             </div>
             <div className="h-fit">
-                <Car data={data.car2}/>
+                <Car data={data.car1} data2={data.car2}/>
             </div>
         </div>
     )

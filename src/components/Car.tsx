@@ -7,14 +7,19 @@ import LocomotiveScroll from "locomotive-scroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Car = ({data} : {data : { id : number ,car : string , shadow : string , tyre : string}}) => {
+type data = {
+    id : number ,car : string , shadow : string , tyre : string
+}
+
+const Car = ({data, data2} : {data : data , data2 : data}) => {
     const car = useRef(null);
     const par = useRef(null);
     const tyreA = useRef(null);
     const tyreB = useRef(null);
-    console.log(data.id , data.id === 1);
-    const left = data.id === 1 ? "11%" : "14%";
-    const right = data.id === 1 ? "15.5%" : "19%";
+    const tyreA2 = useRef(null);
+    const tyreB2 = useRef(null);
+    const left = ["11%" , "14%"];
+    const right = ["15.5%" , "19%"];
 
     useEffect(() => {
         const locomotiveScroll = new LocomotiveScroll();
@@ -33,13 +38,10 @@ const Car = ({data} : {data : { id : number ,car : string , shadow : string , ty
             }
         })
         gtl.to(car.current, {
-            x : "0%",
+            x : "-50%",
         }, "abc")
-        .to(tyreA.current, {
-            rotate : -360
-        },"abc")
-        .to(tyreB.current, {
-            rotate : -360
+        .to([tyreA.current, tyreA2.current, tyreB2.current , tyreB.current], {
+            rotate : -630
         },"abc")
         ;
     })
@@ -53,18 +55,32 @@ const Car = ({data} : {data : { id : number ,car : string , shadow : string , ty
             <motion.div 
                 style={{x : "100%"}} 
                 ref={car} 
-                className="relative top-40"
+                className="relative flex flex-row top-40 w-[200vw] "
             >
-                <img src={data.car} className="relative w-full" alt="" /> 
-                <img src={data.shadow} className="absolute bottom-0" alt="" /> 
-                <motion.img
-                    style={{left}}
-                    src={"/tyre1.PNG"} ref={tyreB} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
-                />
-                <motion.img
-                    style={{right}}
-                    src={"/tyre1.PNG"} ref={tyreA} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
-                />
+                <div className="relative w-1/2">
+                    <img src={data.car} className="relative w-full" alt="" /> 
+                    <img src={data.shadow} className="absolute bottom-0" alt="" /> 
+                    <motion.img
+                        style={{left : left[0]}}
+                        src={"/tyre1.PNG"} ref={tyreB} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
+                    />
+                    <motion.img
+                        style={{right : right[0]}}
+                        src={"/tyre1.PNG"} ref={tyreA} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
+                    />
+                </div>
+                <div className="relative w-1/2">
+                    <img src={data2.car} className="relative w-full" alt="" /> 
+                    <img src={data2.shadow} className="absolute bottom-0" alt="" /> 
+                    <motion.img
+                        style={{left : left[1]}}
+                        src={"/tyre1.PNG"} ref={tyreB2} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
+                    />
+                    <motion.img
+                        style={{right : right[1]}}
+                        src={"/tyre1.PNG"} ref={tyreA2} className={`absolute bottom-[6%] origin-center h-[42%]`} alt="" 
+                    />
+                </div>
             </motion.div>
         </motion.div>
     )
